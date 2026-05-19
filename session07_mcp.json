@@ -1,0 +1,44 @@
+{
+  "_comment": "SESSION 07 — MCP CONFIGURATION DEMO (.vscode/mcp.json)",
+  "_instructor": "Place this file at .vscode/mcp.json in your workspace. Walk through each server.",
+
+  "mcpServers": {
+
+    "github": {
+      "_demo_note": "DEMO 1: GitHub MCP — lets Agent read issues, create PRs from inside VS Code",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GH_TOKEN}"
+      }
+    },
+
+    "filesystem": {
+      "_demo_note": "DEMO 2: Filesystem MCP — let Agent read files outside the workspace (e.g., /tmp/logs)",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp", "${workspaceFolder}"]
+    },
+
+    "postgres": {
+      "_demo_note": "DEMO 3: Postgres MCP — Agent can inspect schema, suggest indexes, query data",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://localhost:5432/demo_db"
+      ]
+    },
+
+    "playwright": {
+      "_demo_note": "DEMO 4: Playwright MCP — Agent can open browser, take screenshots, generate E2E tests",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+
+    "sqlite": {
+      "_demo_note": "ALTERNATIVE to Postgres if no PG available — SQLite works great for classroom demos",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite", "--db-path", "${workspaceFolder}/demo.db"]
+    }
+  }
+}
